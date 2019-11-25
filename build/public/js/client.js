@@ -152,3 +152,7 @@ function renderBoard(data) {
     }
   }
 }
+
+function test(){
+  return 'serveur: '+ env.HOSTNAME;
+}
