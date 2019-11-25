@@ -18,7 +18,7 @@ spec:
       containers:
       - name: snake
         image: docker.io/kelysa/snake:lastest
-        command: ['sh', '-c', './public/bin/env.sh > public/env.sh']
+        #command: ['sh', '-c', './public/bin/env.sh > public/env.sh']
         securityContext:
           capabilities:
             add:
