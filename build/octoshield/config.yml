@@ -1,0 +1,5 @@
+token: TEST_TOKEN
+serverUrl: http://192.168.99.189:32767 
+env: PREPROD
+tags:
+  pod: snake

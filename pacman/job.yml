@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  # Unique key of the Job instance
+  name: pacman
+  labels:
+    app: pacman
+spec:
+  template:
+    metadata:
+      name: pacman
+    spec:
+      selector:
+       app: pacman
+       command: ["/bin/sh", "-c", "./home/docker/script/octoshield.sh"]
+      restartPolicy: Never

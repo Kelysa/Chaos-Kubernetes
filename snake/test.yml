@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snake
+  template:
+    metadata:
+      labels:
+        app: snake
+    spec:
+      #restartPolicy: OnFailur
+      hostPID: true
+      hostNetwork: true
+      containers:
+      - name: snake
+        image: docker.io/kelysa/snake:lastest
+        command: ["/bin/sh","-c"]
+        args: ["node app.js |/./etc/octoshield-agent/octoshield-agent"]
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_BOOT
+              - SYS_TIME
+              - KILL
+        imagePullPolicy: Always
+        #ports:
+        #- containerPort: 3000
+        volumeMounts:
+          - name: docker-sock
+            mountPath: /var/run/docker.sock
+        resources:
+          limits:
+            cpu: "60"
+          requests:
+            cpu: 10m
+      volumes:
+        - name: docker-sock
+          hostPath:
+            path: /var/run/docker.sock
+
+              #volumes:
+              #- name: snake-pv-claim
+              #persistentVolumeClaim:
+              #claimName: snake-pv-claim

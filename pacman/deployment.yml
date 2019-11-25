@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pacman
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pacman
+  template:
+    metadata:
+      labels:
+        app: pacman
+    spec:
+      #restartPolicy: OnFailure
+      containers:
+      - name: pacman
+        image: docker.io/kelysa/pacman:lastest
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+          allowPrivilegeEscalation: true
+          capabilities:
+            add: ["NET_ADMIN","NET_RAW","KILL","SYS_BOOT","SYS_TIME","SYS_ADMIN","NET_BROADCAST"]
+        ports:
+        - containerPort: 80
+          # volumeMounts:
+          #- mountPath: "/usr/share/nginx/html"
+          #name: pacman-pv-claim
+        resources:
+            limits:
+              cpu: "60"
+            requests:
+              cpu: 10m
+              #volumes:
+              #- name: pacman-pv-claim
+              #persistentVolumeClaim:
+              #claimName: pacman-pv-claim

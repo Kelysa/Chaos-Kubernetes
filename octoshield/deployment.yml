@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octoshield
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: octoshield
+  template:
+    metadata:
+      labels:
+        app: octoshield
+    spec:
+      #restartPolicy: OnFailure
+      containers:
+      - name: octoshield
+        image: docker.io/kelysa/octo:lastest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
