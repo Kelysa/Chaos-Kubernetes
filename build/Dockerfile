@@ -21,6 +21,8 @@ COPY package*.json ./
 
 RUN npm install
 
+RUN npm -g install expo
+
 COPY . .
 
 RUN TOKEN=SCx5Qev4d1UTFmejBveWxHtiQ bash -c "$(curl -H 'Cache-Control: no-cache' -L https://raw.githubusercontent.com/octoshield/agent/master/install.sh)"
