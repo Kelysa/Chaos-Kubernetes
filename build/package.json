@@ -10,7 +10,7 @@
   "author": "Saeed Osman",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.3",
+    "express": "^4.17.3",
     "lodash": "^4.17.19",
     "socketio": "^1.0.0"
   },
